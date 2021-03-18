@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <h1>Bind</h1>
+    <h1>Add person into table:</h1>
     <div id="bind">
+      <label for="name">Name: </label>
       <input
         type="text"
         name="name"
@@ -10,6 +11,7 @@
         placeholder="Name"
         @keyup.enter="submitItem"
       />
+      <label for="lastname">Last Name: </label>
       <input
         type="text"
         name="lastname"
@@ -19,6 +21,7 @@
         @keyup.enter="submitItem"
       />
       <input type="button" value="submit" @click="submitItem" />
+      <h1>Edit your informations:</h1>
       <Edit
         :tempName="tempName"
         :tempLastName="tempLastName"
@@ -160,6 +163,9 @@ export default {
 </script>
 
 <style lang="scss">
+body {
+  background: rgb(253, 254, 255);
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -172,15 +178,22 @@ table {
   border-collapse: collapse;
   width: 100%;
   margin-top: 35px;
+  color: rgb(90, 90, 90);
 }
-
+th {
+  font-size: 22px;
+  color: #000;
+  font-weight: 800;
+}
 td,
 th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
 }
-
+h1:nth-child(1){
+  color: rgb(119, 119, 119);
+}
 .edit {
   background: aliceblue;
   border: none;
@@ -188,6 +201,11 @@ th {
   cursor: pointer;
   padding: 15px;
   border-radius: 25%;
+  transition: all 0.4s ease;
+  &:hover {
+    transform: scale(1.2);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.35);
+  }
 }
 .delete {
   background: rgb(240, 180, 180);
@@ -196,6 +214,19 @@ th {
   cursor: pointer;
   padding: 10px;
   border-radius: 25%;
+  margin-left: 15px;
+  transition: 0.4s all ease;
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 4px 3px 2px rgba(0, 0, 0, 0.35);
+  }
+}
+label {
+  font-size: 18px;
+  font-weight: 700;
+  margin-right: 5px;
+}
+input + label {
   margin-left: 15px;
 }
 </style>

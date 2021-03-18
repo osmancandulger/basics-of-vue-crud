@@ -2,7 +2,7 @@
   <div>
     <div id="edit">
       <div class="edit-section">
-        <h1>Edit Name:</h1>
+        <label for="editName">Name:</label>
         <input
           type="text"
           name="editName"
@@ -11,7 +11,7 @@
           :value="tempName"
           @input="changeInput"
         />
-        <h1>Edit Lastname:</h1>
+        <label for="editLastname">Last Name:</label>
         <input
           type="text"
           name="editLastname"
@@ -56,4 +56,13 @@ export default {
 };
 </script>
 
-<style lang="sass" scoped></style>
+<style lang="scss" scoped>
+label {
+  font-size: 18px;
+  font-weight: 700;
+  margin-right: 5px;
+}
+input + label {
+  margin-left: 15px;
+}
+</style>
