@@ -8,6 +8,7 @@
         id="name"
         v-model="name"
         placeholder="Name"
+        @keyup.enter="submitItem"
       />
       <input
         type="text"
@@ -15,9 +16,16 @@
         id="lastname"
         v-model="lastname"
         placeholder="Last Name"
+        @keyup.enter="submitItem"
       />
       <input type="button" value="submit" @click="submitItem" />
-      <div class="edit-section">
+      <Edit
+        :tempName="tempName"
+        :tempLastName="tempLastName"
+        @messageChanged="edit($event)"
+        @messageChanged2="editLastname($event)"
+      />
+      <!-- <div class="edit-section">
         <h1>Edit Name:</h1>
         <input
           type="text"
@@ -34,7 +42,7 @@
           v-model="tempLastName"
           placeholder="Edit Lastname"
         />
-      </div>
+      </div> -->
 
       <table>
         <tr>
@@ -61,21 +69,32 @@
           </td>
         </tr>
       </table>
+
+      <h2 v-if="array.length == 0">There is no more item !</h2>
     </div>
   </div>
 </template>
 <script>
+import Edit from "./components/Edit";
 export default {
   el: "#app",
+  props: {
+    tempName: String,
+    tempLastName: String,
+  },
+
+  components: {
+    Edit,
+  },
   data() {
     /* eslint-disable */
     return {
       name: "",
-      lastname: "",
       temp: "",
       data1: "",
-      tempName: "",
-      tempLastName: "",
+      testName: "",
+      testLastName: "",
+
       array: [
         {
           name: "Osman Can",
@@ -97,6 +116,12 @@ export default {
     };
   },
   methods: {
+    edit($event) {
+      this.testName = $event;
+    },
+    editLastname($event) {
+      this.testLastName = $event;
+    },
     submitItem() {
       if (this.name && this.lastname) {
         this.array.push({ name: this.name, lastname: this.lastname });
@@ -106,16 +131,27 @@ export default {
       }
     },
     editItem(index) {
-      if (this.tempName && !this.tempLastName) {
-        this.array[index].name = this.tempName;
-      } else if (this.tempLastName && !this.tempName) {
-        this.array[index].lastname = this.tempLastName;
-      } else if (this.tempName && this.tempLastName) {
-        this.array[index].name = this.tempName;
-        this.array[index].lastname = this.tempLastName;
+      if (this.testName && !this.testLastName) {
+        this.array[index].name = this.testName;
+      } else if (this.testLastName && !this.testName) {
+        this.array[index].lastname = this.testLastName;
+      } else if (this.testName && this.testLastName) {
+        this.array[index].name = this.testName;
+        this.array[index].lastname = this.testLastName;
       }
-      (this.tempName = ""), (this.tempLastName = "");
+      (this.testName = ""), (this.testLastName = "");
     },
+    // editItem(index) {
+    //   if (this.tempName && !this.tempLastName) {
+    //     this.array[index].name = this.tempName;
+    //   } else if (this.tempLastName && !this.tempName) {
+    //     this.array[index].lastname = this.tempLastName;
+    //   } else if (this.tempName && this.tempLastName) {
+    //     this.array[index].name = this.tempName;
+    //     this.array[index].lastname = this.tempLastName;
+    //   }
+    //   (this.tempName = ""), (this.tempLastName = "");
+    // },
     deleteItem(index) {
       this.array.splice(index, 1);
     },
