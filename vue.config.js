@@ -2,5 +2,5 @@
 // vue.config.js
 
 module.exports = {
-  publicPath: "/basics-of-vue/",
+  publicPath: "/basics-of-vue-crud/",
 };
