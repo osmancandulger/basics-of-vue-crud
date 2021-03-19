@@ -19,6 +19,6 @@ git commit -m 'deploy'
 # if you are deploying to https://<USERNAME>.github.io
 # git push -f git@github.com:osmancandulger/osmancandulger.github.io.git main
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
-git push -f https://github.com/osmancandulger/basics-of-vue-crud.git gh-pages
+git push -f https://github.com/osmancandulger/basics-of-vue-crud.git gh-pages1
 
 cd -
